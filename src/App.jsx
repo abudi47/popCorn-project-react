@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { navigationBar } from "./components/navigationBar";
-
+import { NavigationBar } from "./components/navigationBar";
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -64,8 +63,7 @@ export default function App() {
 
   return (
     <>
-      <navigationBar /> 
-      
+      <NavigationBar query={query} movies={movies}/>
 
       <main className="main">
         <div className="box">

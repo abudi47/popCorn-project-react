@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const navigationBar = () => {
+export const NavigationBar = ({movies , query}) => {
   return (
     <nav className="nav-bar">
         <div className="logo">
