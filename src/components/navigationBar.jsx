@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export const NavigationBar = ({movies , query}) => {
+export const NavigationBar = ({tempMovieData,tempWatchedData }) => {
+  const [movies, setMovies] = useState(tempMovieData);
+  
+  const [query , setQuery] = useState("")
   return (
     <nav className="nav-bar">
         <div className="logo">
