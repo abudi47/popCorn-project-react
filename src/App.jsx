@@ -51,12 +51,14 @@ const tempWatchedData = [
 
 
 export default function App() {
+  const [movies, setMovies] = useState(tempMovieData);
+
 
 
   return (
     <>
       <NavigationBar tempWatchedData={tempWatchedData} tempMovieData={tempMovieData} />
-      <Main tempMovieData={tempMovieData} tempWatchedData={tempWatchedData}/>
+      <Main movies={movies} tempWatchedData={tempWatchedData}/>
 
      
     </>
