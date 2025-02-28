@@ -62,7 +62,6 @@ export default function App() {
       </NavigationBar>
       <Main movies={movies} tempWatchedData={tempWatchedData}/>
 
-     
     </>
   );
 }

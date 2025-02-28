@@ -30,7 +30,11 @@ body {
 }
 
 /* ******* */
-
+.age {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
 .nav-bar {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -54,7 +58,7 @@ body {
   max-width: 42rem;
   background-color: var(--color-background-500);
   border-radius: 0.9rem;
-  overflow: scroll;
+  overflow: hidden;
   position: relative;
 }
 
@@ -138,7 +142,7 @@ body {
 .list {
   list-style: none;
   padding: 0.8rem 0;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .list-watched {
