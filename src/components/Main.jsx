@@ -66,9 +66,7 @@ function Movie ({movie}) {
 function WatchedBox ({movies,tempWatchedData}) {
   const [isOpen2, setIsOpen2] = useState(true);
   const [watched, setWatched] = useState(tempWatchedData);
-  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
-  const avgUserRating = average(watched.map((movie) => movie.userRating));
-  const avgRuntime = average(watched.map((movie) => movie.runtime));
+
   return (
     <div className="box">
         <button
@@ -79,7 +77,22 @@ function WatchedBox ({movies,tempWatchedData}) {
         </button>
         {isOpen2 && (
           <>
-            <div className="summary">
+            <WatchedSummary watched={watched} />
+
+            <WatchedMoviesList watched={watched} />
+          </>
+        )}
+      </div>
+  )
+}
+
+
+function WatchedSummary ({watched}) {
+  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
+  const avgUserRating = average(watched.map((movie) => movie.userRating));
+  const avgRuntime = average(watched.map((movie) => movie.runtime));
+  return  (
+    <div className="summary">
               <h2>Movies you watched</h2>
               <div>
                 <p>
@@ -100,8 +113,13 @@ function WatchedBox ({movies,tempWatchedData}) {
                 </p>
               </div>
             </div>
+  )
+}
 
-            <ul className="list">
+
+function WatchedMoviesList ({watched}) {
+  return (
+    <ul className="list">
               {watched.map((movie) => (
                 <li key={movie.imdbID}>
                   <img src={movie.Poster} alt={`${movie.Title} poster`} />
@@ -123,8 +141,6 @@ function WatchedBox ({movies,tempWatchedData}) {
                 </li>
               ))}
             </ul>
-          </>
-        )}
-      </div>
+    
   )
 }

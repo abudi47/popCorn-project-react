@@ -57,7 +57,9 @@ export default function App() {
 
   return (
     <>
-      <NavigationBar tempWatchedData={tempWatchedData} tempMovieData={tempMovieData} />
+      <NavigationBar tempWatchedData={tempWatchedData} tempMovieData={tempMovieData}>
+        
+      </NavigationBar>
       <Main movies={movies} tempWatchedData={tempWatchedData}/>
 
      
