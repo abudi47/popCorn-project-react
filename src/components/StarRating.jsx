@@ -15,6 +15,7 @@ export default function StarRating({
   size = 48,
   message = [],
   defaultRating = 0,
+  onSetRating,
 }) {
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
@@ -27,6 +28,7 @@ export default function StarRating({
   };
 
   function handleRating(i) {
+    onSetRating(i);
     setRating(i);
   }
   return (
