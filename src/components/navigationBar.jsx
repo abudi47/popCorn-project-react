@@ -4,7 +4,9 @@ export const NavigationBar = ({tempMovieData,tempWatchedData }) => {
   
   return (
     <nav className="nav-bar">
-       
+      <Logo />
+       <Search />
+       <NumResult tempMovieData={tempMovieData}/>
         
        
       </nav>
