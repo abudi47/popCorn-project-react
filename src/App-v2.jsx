@@ -179,14 +179,21 @@ function Logo() {
 
 function Search({ query, setQuery }) {
   const inputEl = useRef(null);
-  inputEl.current.foc;
   useEffect(function () {
-    
+    function callback(e) {
+      if (document.activeElement === inputEl) return;
+      if (e.code === "Enter") {
+        inputEl.current.focus();
+        setQuery("");
+      }
+    }
+
+    document.addEventListener("keydown", callback);
   }, []);
 
   useEffect(function () {
-    const el = document.querySelector(".search");
-    el.focus();
+    // const el = document.querySelector(".search");
+    // el.focus();
   }, []);
 
   return (
