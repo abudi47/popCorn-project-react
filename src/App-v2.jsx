@@ -3,6 +3,7 @@ import StarRating from "./components/StarRating";
 import { useMovies } from "./useMovies";
 import { useLocalStorageState } from "./useLocalStorageState";
 import { useKey } from "./useKey";
+
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -13,10 +14,6 @@ export default function App() {
 
   const [selectedId, setSelectedId] = useState(null);
 
-  
-
-
-
   useEffect(function () {
     console.log("After initial render");
   }, []);
@@ -25,8 +22,8 @@ export default function App() {
     console.log("After every render");
   });
 
-  const { movies, isLoading, error } = useMovies(query , handleCloseMovie );
-  const [watched , setWatched] = useLocalStorageState([], "wathced");
+  const { movies, isLoading, error } = useMovies(query, handleCloseMovie);
+  const [watched, setWatched] = useLocalStorageState([], "wathced");
 
   useEffect(
     function () {
@@ -53,7 +50,6 @@ export default function App() {
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
-
 
   return (
     <>
@@ -127,21 +123,13 @@ function Logo() {
 
 function Search({ query, setQuery }) {
   const inputEl = useRef(null);
-  useEffect(
-    function () {
-      function callback(e) {
-        if (document.activeElement === inputEl.current) return;
-        if (e.code === "Enter") {
-          inputEl.current.focus();
-          setQuery("");
-        }
-      }
 
-      document.addEventListener("keydown", callback);
-      return () => document.addEventListener("keydown", callback);
-    },
-    [setQuery]
-  );
+  useKey("Enter", function () {
+    if (document.activeElement === inputEl.current) return;
+
+    inputEl.current.focus();
+    setQuery("");
+  });
 
   //   useEffect(function () {
   //     // const el = document.querySelector(".search");
@@ -288,16 +276,12 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       countRatingDecison: counterRef,
     };
 
-
-
     onAddWatched(newWatchedMovie);
     // onCloseMovie();
     // setAvgRating(Number(imdbRating))
     // setAvgRating(((avgRating) => (avgRating + userRating) / 2) );
     // console.log(avgRating)
   }
-
-
 
   useEffect(
     function () {
@@ -328,7 +312,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     [title]
   );
 
-   useKey("Escape", onCloseMovie);
+  useKey("Escape", onCloseMovie);
   return (
     <div className="details">
       {isLoading ? (

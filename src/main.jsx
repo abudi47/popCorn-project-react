@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 // import App from "./App";
 import './index.css'
 import Appp from "./App-v2";
+import Apppp from "./App-v3";
 // import StarRating from "./components/StarRating";
 
 // function Test() {
@@ -23,6 +24,8 @@ createRoot(document.getElementById("root")).render(
     />
     <StarRating maxRating={10} color="red" size="40" />
     <Test /> */}
-    <Appp />
+    {/* <Appp />
+     */}
+     <Apppp />
   </StrictMode>
 );
