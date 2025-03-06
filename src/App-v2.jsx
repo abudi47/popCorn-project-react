@@ -1,6 +1,7 @@
 import { use, useEffect, useRef, useState } from "react";
 import StarRating from "./components/StarRating";
 import { useMovies } from "./useMovies";
+import { useLocalStorageState } from "./useLocalStorageState";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -12,10 +13,9 @@ export default function App() {
 
   const [selectedId, setSelectedId] = useState(null);
 
-  const [watched, setWatched] = useState(function () {
-    const storeValue = localStorage.getItem("watched");
-    return JSON.parse(storeValue);
-  });
+  
+
+
 
   useEffect(function () {
     console.log("After initial render");
@@ -25,7 +25,8 @@ export default function App() {
     console.log("After every render");
   });
 
-  const { movies, isLoading, error } = useMovies(query);
+  const { movies, isLoading, error } = useMovies(query , handleCloseMovie );
+  const [watched , setWatched] = useLocalStorageState([], "wathced");
 
   useEffect(
     function () {
@@ -53,12 +54,6 @@ export default function App() {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
 
-  useEffect(
-    function () {
-      localStorage.setItem("watched", JSON.stringify(watched));
-    },
-    [watched]
-  );
 
   return (
     <>
